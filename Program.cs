@@ -17,8 +17,8 @@ namespace zipz
             FileExt.Accepts().Values("txt","csv","log");
             var ArchivePer = app.Option("-a|--archive","Create one archive per time period. Accepts file, day, month, or year.",CommandOptionType.SingleValue);
             ArchivePer.Accepts().Values("file","day","month","year");
-            var DateFilter = app.Option("-d|--datefilter","Filter source files by date. Example '--datefilter 2018-03-5' for March 5, 2018. Filter will ",CommandOptionType.SingleValue);
-
+            var SkipDays = app.Option("-s|--skipdays <INT>","Skip the previous <INT> days when processing files. Example: -s 30 = ignore files less than 30 days old.",CommandOptionType.SingleValue);
+            
             app.HelpOption();
             app.OnExecute(() =>
             {   
@@ -44,11 +44,16 @@ namespace zipz
 
                 System.Console.WriteLine("Archive per: \t{0}",group);
 
+                int ignoreDays = -7;
+                if(SkipDays.HasValue())
+                    ignoreDays = -1 * Int32.Parse(SkipDays.Value());
+
                 System.Console.WriteLine("\n\n");
 
                 string searchPattern = "*." + ext;
                 var sourceDirectory = new DirectoryInfo(sourceDir);
-                var files = sourceDirectory.EnumerateFiles(searchPattern);                
+                var files = sourceDirectory.EnumerateFiles(searchPattern)
+                    .Where(file => file.LastWriteTime < DateTime.Now.AddDays(ignoreDays));
 
                 Archiver archiver = new Archiver(); 
                 archiver.CreateArchives(files, group);
