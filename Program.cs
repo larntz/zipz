@@ -47,7 +47,7 @@ namespace zipz
                 int ignoreDays = -7;
                 if(SkipDays.HasValue())
                     ignoreDays = -1 * Int32.Parse(SkipDays.Value());
-                System.Console.WriteLine("Ignoring previous days: \t{0}", -1 * ignoreDays);
+                System.Console.WriteLine("Skip days: \t{0}", -1 * ignoreDays);
 
                 System.Console.WriteLine("\n\n");
 
