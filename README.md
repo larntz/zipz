@@ -8,7 +8,7 @@ Zip files in specified directory.
 
 *** SOURCE FILES WILL BE DELETED ***
 
-Default options `--archive file --extension log`
+Default options `--archive file --extension log --skip 7`
 
 Usage:  [options] <Path>
 
