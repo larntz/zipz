@@ -63,6 +63,7 @@ namespace zipz
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
                 {
+                    System.Console.Write(String.Format("\r{0}: {1,7} files compressed.",archiveName,filesAdded));
                     foreach(FileInfo file in files)
                     {                        
                         archive.CreateEntryFromFile(file.FullName, file.Name, CompressionLevel.Optimal);
