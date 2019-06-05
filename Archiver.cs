@@ -79,12 +79,11 @@ namespace zipz
             if(list.ContainsKey(key))
             {
                 list[key].Add(fullname);
+                return;
             }
-            else
-            {
-                list[key] = new List<FileInfo>();
-                list[key].Add(fullname);
-            }             
+            
+            list[key] = new List<FileInfo>();
+            list[key].Add(fullname);             
         }
     }
 
