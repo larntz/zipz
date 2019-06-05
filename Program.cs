@@ -58,7 +58,6 @@ namespace zipz
 
                 Archiver archiver = new Archiver(); 
                 archiver.CreateArchives(files, group);
-
             });
 
             return app.Execute(args);
