@@ -10,7 +10,7 @@ namespace zipz
         public static int Main(string[] args)
         {
             var app = new CommandLineApplication();
-            app.Description = "Zip files in specified directory. \n\n*** SOURCE FILES WILL BE DELETED *** \n\nDefault options `--archive file --extension log`";
+            app.Description = "Zip files in specified directory. \n\n*** SOURCE FILES WILL BE DELETED *** \n\nDefault options `--archive file --extension log --skip 7`";
 
             var SourceArg = app.Argument("Path", "Path to directory containing files.").IsRequired().Accepts(v => v.ExistingDirectory());
             var FileExt = app.Option("-e|--extension <EXT>","File extension to zip. Accepts txt, csv, or log. Example: '-e txt'", CommandOptionType.SingleValue);
