@@ -81,9 +81,12 @@ namespace zipz
                         foreach (var oldEntry in copyFromArchive.Entries)
                         {                                    
                             var newEntry = newArchive.CreateEntry(oldEntry.FullName);
+                            newEntry.LastWriteTime = oldEntry.LastWriteTime; // needed to preserve original file timestamp
                             using (Stream toStream = newEntry.Open())
                             using (Stream fromStream = oldEntry.Open())
                                 fromStream.CopyTo(toStream);
+                            
+
                         }           
                     File.Delete(archivePath + ".existing");
                 }
