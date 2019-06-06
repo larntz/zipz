@@ -10,7 +10,7 @@ namespace zipz
         public static int Main(string[] args)
         {
             var app = new CommandLineApplication();
-            app.Description = "Zip files in specified directory. \n\n*** SOURCE FILES WILL BE DELETED *** \n\nDefault options `--archive file --extension log --skipdays 7`";
+            app.Description = "Zip files in specified directory. \n\n*** SOURCE FILES WILL BE DELETED *** \n\nDefault options `--archive file --extension log --skipdays 1`";
 
             var SourceArg = app.Argument("Path", "Path to directory containing files.").IsRequired().Accepts(v => v.ExistingDirectory());
             var FileExt = app.Option("-e|--extension <EXT>","File extension to zip. Accepts txt, csv, or log. Example: '-e txt'", CommandOptionType.SingleValue);
@@ -44,7 +44,7 @@ namespace zipz
 
                 System.Console.WriteLine("Archive per: \t{0}",group);
 
-                int ignoreDays = -7;
+                int ignoreDays = -1;
                 if(SkipDays.HasValue())
                     ignoreDays = -1 * Int32.Parse(SkipDays.Value());
                 System.Console.WriteLine("Skip days: \t{0}", -1 * ignoreDays);
