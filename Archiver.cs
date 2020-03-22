@@ -85,8 +85,6 @@ namespace zipz
                             using (Stream toStream = newEntry.Open())
                             using (Stream fromStream = oldEntry.Open())
                                 fromStream.CopyTo(toStream);
-                            
-
                         }           
                     File.Delete(archivePath + ".existing");
                 }
